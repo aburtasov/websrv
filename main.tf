@@ -54,7 +54,8 @@ resource "aws_security_group" "web" {
 #------------------------Launch Configuration with Auto AMI Lookup-----------------------------------------------
 
 resource "aws_launch_configuration" "web" {
-  name = "WebServer-Highly-Available-LC"
+   //name = "WebServer-Highly-Available-LC"
+  name_prefix = "WebServer-Highly-Available-LC-"
   image_id = data.aws_ami.latest_ubuntu
   instance_type = "t3.micro"
   security_groups = [aws_security_group.web.id]
@@ -68,7 +69,8 @@ resource "aws_launch_configuration" "web" {
 #-------------------------Auto Scaling Group using 2 Availability Zones-------------------------------------------
 
 resource "aws_autoscaling_group" "web" {
-  name = "WebServer-Highly-Available-ASG"
+  //name = "WebServer-Highly-Available-ASG"
+  name = "ASG-${aws_launch_configuration.web.name}"
   launch_configuration = aws_launch_configuration.web.name
   max_size = 2
   min_size = 2
@@ -82,7 +84,7 @@ resource "aws_autoscaling_group" "web" {
        for_each =  {
            Name = "WebServer in ASG"
            Owner = "Me"
-           TAGKE = "TAGVALUE"
+           TAGKEY = "TAGVALUE"
        }
 
       content {
