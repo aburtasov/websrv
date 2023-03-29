@@ -6,6 +6,7 @@
 #    -  Auto Scaling Group using 2 Availability Zones
 #    -  Classic Load Balancer in 2 Availability Zones
 #
+# Смотреть документацию на основном сайте
 #------------------------------------------------------------
 
 provider "aws" {
@@ -23,7 +24,7 @@ data "aws_ami" "latest_ubuntu" {
     }
 }
 
-#------------------------ Security Group for web Server------------------------------------------------------
+#------------------------ Security Group for Web Server------------------------------------------------------
 
 resource "aws_security_group" "web" {
   name = "Dynamic Security Group"
