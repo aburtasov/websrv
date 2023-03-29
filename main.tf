@@ -73,7 +73,7 @@ resource "aws_launch_configuration" "web" {
 resource "aws_autoscaling_group" "web" {
   //name = "WebServer-Highly-Available-ASG"
   name = "ASG-${aws_launch_configuration.web.name}"        // появилась зависимость от имени launch configuration
-                                                          //  если имя будет менять, то будет создаваться новая ASG
+                                                          //  если имя будет меняться, то будет создаваться новая ASG
   launch_configuration = aws_launch_configuration.web.name
   max_size = 2
   min_size = 2
