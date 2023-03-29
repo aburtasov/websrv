@@ -1,5 +1,6 @@
 #-----------------------------------------------------------
 # Provision Highly Available Web in any Region Default VPC
+# Green/Blue Deployment
 # Creat:
 #    -  Security Group for web Server
 #    -  Launch Configuration with Auto AMI Lookup
