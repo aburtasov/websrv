@@ -56,7 +56,8 @@ resource "aws_security_group" "web" {
 
 resource "aws_launch_configuration" "web" {
    //name = "WebServer-Highly-Available-LC"
-  name_prefix = "WebServer-Highly-Available-LC-"
+  name_prefix = "WebServer-Highly-Available-LC-"  //  создадим префикс. остальная часть имени будет подставляться тераформом автоматически при
+                                                  //  изменении launch configuration
   image_id = data.aws_ami.latest_ubuntu
   instance_type = "t3.micro"
   security_groups = [aws_security_group.web.id]
@@ -71,7 +72,8 @@ resource "aws_launch_configuration" "web" {
 
 resource "aws_autoscaling_group" "web" {
   //name = "WebServer-Highly-Available-ASG"
-  name = "ASG-${aws_launch_configuration.web.name}"
+  name = "ASG-${aws_launch_configuration.web.name}"        // появилась зависимость от имени launch configuration
+                                                          //  если имя будет менять, то будет создаваться новая ASG
   launch_configuration = aws_launch_configuration.web.name
   max_size = 2
   min_size = 2
