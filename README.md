@@ -1,2 +1,2 @@
 # websrv
-Provision Highly Available Web in any Region Default VPC. Create by Terraform
+PrProvision Highly Available Web in any AWS Region with Default VPC. Create by Terraform
